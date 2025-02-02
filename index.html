@@ -2,11 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Obstacle Course</title>
   </head>
   <body>
+    <div id="loader"></div>
+    <div id="instructions" style="display: none;">
+      <h1>Obstacle Course</h1>
+      <h2>Part 1</h2>
+      <p>Get to the end and be the best</p>
+      <kbd>W</kbd>&nbsp;<kbd>A</kbd>&nbsp;<kbd>S</kbd>&nbsp;<kbd>D</kbd> to move
+      <br />
+      <kbd>SPACE</kbd> to jump.
+      <br />
+      <br />
+      <button id="startButton">Click To Play</button>
+      <p>'Player' model and animations are taken from <a href="https://www.mixamo.com" target="_blank" rel="nofollow noreferrer">Mixamo</a></p>
+    </div>
     <script type="module" src="/src/game_manager.ts"></script>
   </body>
 </html>
