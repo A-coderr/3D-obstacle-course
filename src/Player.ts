@@ -130,27 +130,27 @@ export default class Player {
     // Avatar model also lerps towards the capsules position, but independently of the followCam
     this.animationController?.model?.position.lerp(this.vector, delta * 20)
 
-    // // Also turn Eve to face the direction of travel.
-    // // First, construct a rotation matrix based on the direction from the followTarget to Eve
-    // this.rotationMatrix.lookAt(
-    //   this.followTarget.position,
-    //   this.animationController?.model?.position as Vector3,
-    //   this.animationController?.model?.up as Vector3
-    // )
-    // this.targetQuaternion.setFromRotationMatrix(this.rotationMatrix) // creating a quaternion to rotate Eve, since eulers can suffer from gimbal lock
+    // Also turn Avatar to face the direction of travel.
+    // First, construct a rotation matrix based on the direction from the followTarget to Eve
+    this.rotationMatrix.lookAt(
+      this.followTarget.position,
+      this.animationController?.model?.position as Vector3,
+      this.animationController?.model?.up as Vector3
+    )
+    this.targetQuaternion.setFromRotationMatrix(this.rotationMatrix) // creating a quaternion to rotate Eve, since eulers can suffer from gimbal lock
 
-    // // Next, get the distance from the Eve model to the followTarget
-    //const distance = this.animationController?.model?.position.distanceTo(this.followTarget.position)
+    // Next, get the distance from the Avatar model to the followTarget
+    const distance = this.animationController?.model?.position.distanceTo(this.followTarget.position)
 
-    // // If distance is higher than some espilon, and Eves quaternion isn't the same as the targetQuaternion, then rotate towards the targetQuaternion.
-    // if ((distance as number) > 0.0001 && !this.animationController?.model?.quaternion.equals(this.targetQuaternion)) {
-    //   this.targetQuaternion.z = 0 // so that it rotates around the Y axis
-    //   this.targetQuaternion.x = 0 // so that it rotates around the Y axis
-    //   this.targetQuaternion.normalize() // always normalise quaternions before use.
-    //   this.animationController?.model?.quaternion.rotateTowards(this.targetQuaternion, delta * 20)
-    // }
+    // If distance is higher than some espilon, and Avatars quaternion isn't the same as the targetQuaternion, then rotate towards the targetQuaternion.
+    if ((distance as number) > 0.0001 && !this.animationController?.model?.quaternion.equals(this.targetQuaternion)) {
+      this.targetQuaternion.z = 0 // so that it rotates around the Y axis
+      this.targetQuaternion.x = 0 // so that it rotates around the Y axis
+      this.targetQuaternion.normalize() // always normalise quaternions before use.
+      this.animationController?.model?.quaternion.rotateTowards(this.targetQuaternion, delta * 20)
+    }
 
-    // update which animationAction Eve should be playing
+    // update which animationAction Avatar should be playing
     this.animationController?.update(delta);
   }
 }
