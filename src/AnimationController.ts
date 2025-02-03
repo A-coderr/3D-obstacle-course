@@ -1,6 +1,6 @@
 import { AnimationAction, Scene } from 'three/src/Three.js'
 import Keyboard from './KeyboardController'
-import Eve from './Avatar'
+import Avatar from './Avatar'
 
 export default class AnimationController {
   scene: Scene
@@ -9,7 +9,7 @@ export default class AnimationController {
   activeAction?: AnimationAction
   speed = 0
   keyboard: Keyboard
-  model?: Eve
+  model?: Avatar
 
   constructor(scene: Scene, keyboard: Keyboard) {
     this.scene = scene
@@ -17,7 +17,7 @@ export default class AnimationController {
   }
 
   async init() {
-    this.model = new Eve()
+    this.model = new Avatar()
     await this.model.init(this.animationActions)
     this.activeAction = this.animationActions['idle']
     this.scene.add(this.model)
@@ -97,7 +97,7 @@ export default class AnimationController {
       !actionAssigned && this.setAction(this.animationActions['idle'])
     }
 
-    // update the Eve models animation mixer
+    // update the Avatar models animation mixer
     this.model?.update(delta)
   }
 }
