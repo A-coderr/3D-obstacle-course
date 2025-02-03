@@ -67,17 +67,17 @@ export default class Game {
 
     new Platform(this.scene, this.world, [6, 0.1, 1], [-1, 4.5, -1])
 
-    // this.pendulums.push(new Pendulum(this.scene, this.world, [0, 8, -1]))
+    this.pendulums.push(new Pendulum(this.scene, this.world, [0, 8, -1]))
 
-    // this.pendulums.push(new Pendulum(this.scene, this.world, [-2, 8, -1]))
+    this.pendulums.push(new Pendulum(this.scene, this.world, [-2, 8, -1]))
 
     new Platform(this.scene, this.world, [1.5, 0.1, 8], [-5.5, 4.5, 4.5], [0, 0, -Math.PI / 8])
 
-    // this.pendulums.push(new Pendulum(this.scene, this.world, [-5, 8, 2.5], Math.PI / 2))
+    this.pendulums.push(new Pendulum(this.scene, this.world, [-5, 8, 2.5], Math.PI / 2))
 
-    // this.pendulums.push(new Pendulum(this.scene, this.world, [-5, 8, 5], Math.PI / 2))
+    this.pendulums.push(new Pendulum(this.scene, this.world, [-5, 8, 5], Math.PI / 2))
 
-    // this.finish = new Finish(this.scene, this.world, [0, 4.0, 10])
+    this.finish = new Finish(this.scene, this.world, [0, 4.0, 10])
 
     this.player = new Player(this.scene, this.camera, this.renderer, this.world, [0, 0.1, 0], this.ui)
     await this.player.init()
