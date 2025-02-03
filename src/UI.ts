@@ -28,7 +28,7 @@ export default class UI {
   }
 
   show() {
-    ;(document.getElementById('spinner') as HTMLDivElement).style.display = 'none'
+    ;(document.getElementById('loader') as HTMLDivElement).style.display = 'none'
     this.instructions.style.display = 'block'
   }
 }

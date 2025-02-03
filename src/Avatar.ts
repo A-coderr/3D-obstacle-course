@@ -1,6 +1,11 @@
 import { AnimationAction, AnimationMixer, Group, Mesh, AnimationUtils } from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js'
+import avatar_walk from './assets/models/avatar_compressed.glb'
+import avatar_idle from './assets/models/idle.glb'
+import avatar_pose from './assets/models/pose.glb'
+import avatar_run from './assets/models/run.glb'
+import avatar_jump from './assets/models/jump.glb'
  
 export default class Eve extends Group {
   mixer?: AnimationMixer
@@ -18,11 +23,11 @@ export default class Eve extends Group {
 
   async init(animationActions: { [key: string]: AnimationAction }) {
     const [eve, idle, run, jump, pose] = await Promise.all([
-      this.glTFLoader.loadAsync('models/eve$@walk_compressed.glb'),
-      this.glTFLoader.loadAsync('models/eve@idle.glb'),
-      this.glTFLoader.loadAsync('models/eve@run.glb'),
-      this.glTFLoader.loadAsync('models/eve@jump.glb'),
-      this.glTFLoader.loadAsync('models/eve@pose.glb'),
+      this.glTFLoader.loadAsync(avatar_walk),
+      this.glTFLoader.loadAsync(avatar_idle),
+      this.glTFLoader.loadAsync(avatar_run),
+      this.glTFLoader.loadAsync(avatar_jump),
+      this.glTFLoader.loadAsync(avatar_pose),
     ])
 
     eve.scene.traverse((m) => {
