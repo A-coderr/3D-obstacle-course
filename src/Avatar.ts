@@ -4,10 +4,9 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js'
 import avatar_walk from './assets/models/avatar_compressed.glb'
 import avatar_idle from './assets/models/idle.glb'
 import avatar_pose from './assets/models/pose.glb'
-import avatar_run from './assets/models/run.glb'
 import avatar_jump from './assets/models/jump.glb'
- 
-export default class Eve extends Group {
+
+export default class avatar extends Group {
   mixer?: AnimationMixer
   glTFLoader: GLTFLoader
 
@@ -22,36 +21,32 @@ export default class Eve extends Group {
   }
 
   async init(animationActions: { [key: string]: AnimationAction }) {
-    const [eve, idle, run, jump, pose] = await Promise.all([
+    const [avatar, idle, jump, pose] = await Promise.all([
       this.glTFLoader.loadAsync(avatar_walk),
       this.glTFLoader.loadAsync(avatar_idle),
-      this.glTFLoader.loadAsync(avatar_run),
       this.glTFLoader.loadAsync(avatar_jump),
       this.glTFLoader.loadAsync(avatar_pose),
     ])
 
-    eve.scene.traverse((m) => {
+    avatar.scene.traverse((m) => {
       if ((m as Mesh).isMesh) {
         m.castShadow = true
       }
     })
 
-    this.mixer = new AnimationMixer(eve.scene)
+    this.mixer = new AnimationMixer(avatar.scene)
     animationActions['idle'] = this.mixer.clipAction(idle.animations[0])
-    animationActions['walk'] = this.mixer.clipAction(eve.animations[0])
-    //animationActions['walk'] = this.mixer.clipAction(AnimationUtils.subclip(eve.animations[0], 'walk', 0, 42))
-    animationActions['run'] = this.mixer.clipAction(run.animations[0])
-    //animationActions['run'] = this.mixer.clipAction(AnimationUtils.subclip(run.animations[0], 'run', 0, 17))
+    animationActions['walk'] = this.mixer.clipAction(AnimationUtils.subclip(avatar.animations[0], 'walk', 0, 42))
     // jump.animations[0].tracks = jump.animations[0].tracks.filter(function (e) {
     //   return !e.name.endsWith('.position')
     // })
-    // console.log(jump.animations[0].tracks)
+    //console.log(jump.animations[0].tracks)
     animationActions['jump'] = this.mixer.clipAction(jump.animations[0])
     animationActions['pose'] = this.mixer.clipAction(pose.animations[0])
 
     animationActions['idle'].play()
 
-    this.add(eve.scene)
+    this.add(avatar.scene)
   }
 
   update(delta: number) {
