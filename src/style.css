@@ -5,7 +5,7 @@ body {
 }
 
 #instructions {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   top: 50%;
   left: 50%;
   height: 500px;
@@ -19,6 +19,8 @@ body {
   text-align: center;
   pointer-events: none;
   user-select: none;
+  border-radius: 10%;
+  border: 2px solid orange;
 }
 
 #instructions a {
@@ -29,6 +31,13 @@ body {
 #instructions button {
   font-size: 24px;
   pointer-events: auto;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+}
+
+#instructions button:hover {
+  background-color: orange;
 }
 
 kbd {
