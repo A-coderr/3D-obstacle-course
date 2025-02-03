@@ -64,22 +64,22 @@ export default class Player {
   // }
 
   update(delta: number) {
-    // this.inputVelocity.set(0, 0, 0)
-    // if (this.grounded) {
-    //   if (this.keyboard.keyMap['KeyW']) {
-    //     this.inputVelocity.z = -1
-    //   }
-    //   if (this.keyboard.keyMap['KeyS']) {
-    //     this.inputVelocity.z = 1
-    //   }
-    //   if (this.keyboard.keyMap['KeyA']) {
-    //     this.inputVelocity.x = -1
-    //   }
-    //   if (this.keyboard.keyMap['KeyD']) {
-    //     this.inputVelocity.x = 1
-    //   }
+    this.inputVelocity.set(0, 0, 0)
+    if (this.grounded) {
+      if (this.keyboard.keyMap['KeyW']) {
+        this.inputVelocity.z = -1
+      }
+      if (this.keyboard.keyMap['KeyS']) {
+        this.inputVelocity.z = 1
+      }
+      if (this.keyboard.keyMap['KeyA']) {
+        this.inputVelocity.x = -1
+      }
+      if (this.keyboard.keyMap['KeyD']) {
+        this.inputVelocity.x = 1
+      }
 
-    //   this.inputVelocity.setLength(delta * (this.animationController?.speed || 1)) // limit horizontal movement based on walking or running speed
+      this.inputVelocity.setLength(delta * (this.animationController?.speed || 1)) // limit horizontal movement based on walking or running speed
 
     //   if (!this.wait && this.keyboard.keyMap['Space']) {
     //     this.wait = true
@@ -92,15 +92,15 @@ export default class Player {
     //     this.inputVelocity.y = 5 // give jumping some height
     //     this.grounded = false
     //   }
-    // }
+    }
 
-    // // apply the followCam yaw to inputVelocity so the capsule moves forward based on cameras forward direction
-    // this.euler.y = this.followCam.yaw.rotation.y
-    // this.quaternion.setFromEuler(this.euler)
-    // this.inputVelocity.applyQuaternion(this.quaternion)
+    // apply the followCam yaw to inputVelocity so the capsule moves forward based on cameras forward direction
+    this.euler.y = this.followCam.yaw.rotation.y
+    this.quaternion.setFromEuler(this.euler)
+    this.inputVelocity.applyQuaternion(this.quaternion)
 
     // // now move the capsule body based on inputVelocity
-    // this.body.applyImpulse(this.inputVelocity, true)
+    this.body.applyImpulse(this.inputVelocity, true)
 
     // // The followCam will lerp towards the followTarget position.
     // this.followTarget.position.copy(this.body.translation()) // Copy the capsules position to followTarget

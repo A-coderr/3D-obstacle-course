@@ -75,42 +75,42 @@ export default class AnimationController {
         setTimeout(() => (this.wait = false), 1200);
       }
 
+      // if (
+      //   !actionAssigned &&
+      //   this.keyboard.keyMap["KeyW"] &&
+      //   this.keyboard.keyMap["ShiftLeft"]
+      // ) {
+      //   this.setAction(this.animationActions["run"]);
+      //   actionAssigned = true;
+      // }
+
+      // if (!actionAssigned && this.keyboard.keyMap["KeyW"]) {
+      //   this.setAction(this.animationActions["walk"]);
+      //   actionAssigned = true;
+      // }
+
       if (
         !actionAssigned &&
-        this.keyboard.keyMap["KeyW"] &&
-        this.keyboard.keyMap["ShiftLeft"]
+        (this.keyboard.keyMap['KeyW'] ||
+          this.keyboard.keyMap['KeyA'] ||
+          this.keyboard.keyMap['KeyS'] ||
+          this.keyboard.keyMap['KeyD']) &&
+        this.keyboard.keyMap['ShiftLeft']
       ) {
-        this.setAction(this.animationActions["run"]);
-        actionAssigned = true;
+        this.setAction(this.animationActions['run'])
+        actionAssigned = true
       }
 
-      if (!actionAssigned && this.keyboard.keyMap["KeyW"]) {
-        this.setAction(this.animationActions["walk"]);
-        actionAssigned = true;
+      if (
+        !actionAssigned &&
+        (this.keyboard.keyMap['KeyW'] ||
+          this.keyboard.keyMap['KeyA'] ||
+          this.keyboard.keyMap['KeyS'] ||
+          this.keyboard.keyMap['KeyD'])
+      ) {
+        this.setAction(this.animationActions['walk'])
+        actionAssigned = true
       }
-
-      // if (
-      //   !actionAssigned &&
-      //   (this.keyboard.keyMap['KeyW'] ||
-      //     this.keyboard.keyMap['KeyA'] ||
-      //     this.keyboard.keyMap['KeyS'] ||
-      //     this.keyboard.keyMap['KeyD']) &&
-      //   this.keyboard.keyMap['ShiftLeft']
-      // ) {
-      //   this.setAction(this.animationActions['run'])
-      //   actionAssigned = true
-      // }
-
-      // if (
-      //   !actionAssigned &&
-      //   (this.keyboard.keyMap['KeyW'] ||
-      //     this.keyboard.keyMap['KeyA'] ||
-      //     this.keyboard.keyMap['KeyS'] ||
-      //     this.keyboard.keyMap['KeyD'])
-      // ) {
-      //   this.setAction(this.animationActions['walk'])
-      //   actionAssigned = true
-      // }
 
       if (!actionAssigned && this.keyboard.keyMap["KeyQ"]) {
         this.setAction(this.animationActions["pose"]);
