@@ -41,7 +41,7 @@ export default class Game {
     const floorShape = ColliderDesc.cuboid(25, 0.5, 25)
     this.world.createCollider(floorShape, floorBody)
 
-    this.player = new Player(this.scene, this.camera, this.renderer) //, this.world, [0, 0.1, 0])
+    this.player = new Player(this.scene, this.camera, this.renderer, this.world, [0, 0.1, 0])
     await this.player.init()
 
     const environment = new Environment(this.scene)

@@ -1,4 +1,4 @@
-//import { ActiveEvents, ColliderDesc, RigidBody, RigidBodyDesc, World } from '@dimforge/rapier3d-compat'
+import { ActiveEvents, ColliderDesc, RigidBody, RigidBodyDesc, World } from '@dimforge/rapier3d-compat'
 import { Euler, Matrix4, Object3D, PerspectiveCamera, Quaternion, Scene, Vector3, WebGLRenderer } from 'three'
 import AnimationController from './AnimationController'
 import FollowCam from './CameraController'
@@ -6,8 +6,8 @@ import Keyboard from './KeyboardController'
 
 export default class Player {
   scene: Scene
-  //world: World
-  //body: RigidBody
+  world: World
+  body: RigidBody
   animationController?: AnimationController
   vector = new Vector3()
   inputVelocity = new Vector3()
@@ -24,32 +24,32 @@ export default class Player {
   constructor(
     scene: Scene,
     camera: PerspectiveCamera,
-    renderer: WebGLRenderer
-    //world: World,
-    //position: [number, number, number] = [0, 0, 0]
+    renderer: WebGLRenderer,
+    world: World,
+    position: [number, number, number] = [0, 0, 0]
   ) {
     this.scene = scene
-    //this.world = world
+    this.world = world
     this.keyboard = new Keyboard(renderer)
     this.followCam = new FollowCam(this.scene, camera, renderer)
 
     scene.add(this.followTarget) // the followCam will lerp towards this object3Ds world position.
 
-    // this.body = world.createRigidBody(
-    //   RigidBodyDesc.dynamic()
-    //     .setTranslation(...position)
-    //     .enabledRotations(false, false, false)
-    //     .setLinearDamping(4)
-    //     .setCanSleep(false)
-    // )
+    this.body = world.createRigidBody(
+      RigidBodyDesc.dynamic()
+        .setTranslation(...position)
+        .enabledRotations(false, false, false)
+        .setLinearDamping(4)
+        .setCanSleep(false)
+    )
 
-    // const shape = ColliderDesc.capsule(0.5, 0.15)
-    //   .setTranslation(0, 0.645, 0)
-    //   .setMass(1)
-    //   .setFriction(0)
-    //   .setActiveEvents(ActiveEvents.COLLISION_EVENTS)
+    const shape = ColliderDesc.capsule(0.5, 0.15)
+      .setTranslation(0, 0.645, 0)
+      .setMass(1)
+      .setFriction(0)
+      .setActiveEvents(ActiveEvents.COLLISION_EVENTS)
 
-    // world.createCollider(shape, this.body)
+    world.createCollider(shape, this.body)
   }
 
   async init() {
